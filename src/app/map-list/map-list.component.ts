@@ -19,7 +19,7 @@ export class MapListComponent implements OnInit {
     //console.log("Object: "+mapObject);
     //console.log("Info: "+mapInfo);
     //console.log("Element: "+house);
-    let map = document.getElementById("mapObject");
+    //let map = document.getElementById("mapObject");
     //console.log(map.contentDocument.getElementById("path13950"));
    }
 }
