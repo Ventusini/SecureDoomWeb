@@ -11,20 +11,10 @@ import { CarFlowService } from './car-flow.service';
 import { IncidentsService } from './incidents.service';
 import { IncidentsChartComponent } from './incidents-chart/incidents-chart.component';
 import { CarsFlowChartComponent } from './cars-flow-chart/cars-flow-chart.component';
+import { MosquittoWebSocketService } from './mosquitto-web-socket.service';
 
-import { Observable } from 'rxjs';
 
-import {
-  IMqttMessage,
-  MqttModule,
-  IMqttServiceOptions
-} from 'ngx-mqtt';
 
-export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
-  hostname: 'm12.cloudmqtt.com',
-  port: 12094,
-  path: '/'
-};
 
 @NgModule({
   declarations: [
@@ -39,9 +29,8 @@ export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    MqttModule.forRoot(MQTT_SERVICE_OPTIONS)
   ],
-  providers: [CarFlowService, IncidentsService],
+  providers: [CarFlowService, IncidentsService, MosquittoWebSocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
