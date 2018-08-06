@@ -3,16 +3,17 @@ import { CarFlowService } from '../car-flow.service';
 import { IncidentsService } from '../incidents.service';
 import { Chart } from 'chart.js';
 
+
 @Component({
-  selector: 'app-graph-list',
-  templateUrl: './graph-list.component.html',
-  styleUrls: ['./graph-list.component.css']
+  selector: 'app-incidents-chart',
+  templateUrl: './incidents-chart.component.html',
+  styleUrls: ['./incidents-chart.component.css']
 })
-export class GraphListComponent implements OnInit {
+export class IncidentsChartComponent implements OnInit {
 
   chart = [];
 
-  constructor(private _cars: CarFlowService, private _incidents: IncidentsService) { }
+  constructor(private _incidents: IncidentsService) { }
 
   ngOnInit() {
     this._incidents.incidents()
@@ -91,5 +92,4 @@ export class GraphListComponent implements OnInit {
       });
     })
   }
-
 }
