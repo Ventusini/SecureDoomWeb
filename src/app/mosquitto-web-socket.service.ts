@@ -12,7 +12,7 @@ export class MosquittoWebSocketService {
     return this._client;
   }
   public connect(): void {
-    this._client = new Paho.MQTT.Client("m12.cloudmqtt.com", 12094, "web_futtzqnc_vn6Udf7NG9Zq");
+    this._client = new Paho.MQTT.Client("m12.cloudmqtt.com", 32094, "web_futtzqnc_vn6Udf7NH9Zq");
 
     this.client.connect({
       useSSL: true,
@@ -28,7 +28,10 @@ export class MosquittoWebSocketService {
 
   public onConnected(): void {
     console.log('Connected to broker.');
-    this.client.subscribe('/test2/timedate', () => { })
+    this.client.subscribe('topic2/timedate', () => { })
+    let message = new Paho.MQTT.Message("Hello");
+    message.destinationName = "World";
+    this.client.send(message);
   }
 
 }

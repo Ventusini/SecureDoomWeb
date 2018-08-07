@@ -28,6 +28,9 @@
     "ngx-mqtt": "^6.4.1",
     "ngx-mqtt-client": "^1.3.4",
     "rxjs": "^6.0.0",
+    "svg": "^0.1.0",
+    "svg.js": "^2.6.5",
+    "svgjs": "^2.6.2",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
