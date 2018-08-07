@@ -27,7 +27,7 @@ export class MapListComponent implements OnInit {
     const grassColor : string = "#558B2F";
     const streetColor : string =  "#9E9E9E";
     const danger : string = "#FF6D00";
-    
+    let streets=[]
     //Houses
     let housePos=0;
     var i=0;
