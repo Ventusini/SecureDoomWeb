@@ -4,6 +4,7 @@ import { MosquittoWebSocketService } from '../mosquitto-web-socket.service';
 import { Paho } from 'ng2-mqtt';
 import * as SVG from 'svg.js';
 import { SvgBase } from '../classes/svg-base';
+import { HttpErrorResponse } from '../../../node_modules/@angular/common/http';
 export interface Foo {
   bar: string;
 }
@@ -88,8 +89,10 @@ export class MapListComponent implements OnInit {
     for(var i  = 0; i < borders.length; i++){
       svg.drawLine(borders[i][0], borders[i][1], borders[i][2], borders[i][3], 6, borderColor, draw)
     }
-    houses[10].animate().attr({ fill: danger })
-    this.mqtt.connect();
+
+    //houses[10].animate().attr({ fill: danger })
+    this.mqtt.connect("s");
+    //this.mqtt.send_message("Hola");
     this.mqtt.client.onMessageArrived = (message: Paho.MQTT.Message) => {
       let response = JSON.parse(message.payloadString);
       console.log(response)
@@ -99,8 +102,11 @@ export class MapListComponent implements OnInit {
       else{
         streets[response.house.id].animate().attr({ fill: streetColor })
       }
-      if(response.house.magnetic){
-
+      if(response.house.magnetico){
+        houses[response.house.id].animate().attr({ fill : magneticColor })
+      }
+      else{
+        houses[response.house.id].animate().attr({ fill : houseColor })
       }
     }
   }

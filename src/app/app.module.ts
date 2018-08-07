@@ -12,6 +12,7 @@ import { IncidentsService } from './incidents.service';
 import { IncidentsChartComponent } from './incidents-chart/incidents-chart.component';
 import { CarsFlowChartComponent } from './cars-flow-chart/cars-flow-chart.component';
 import { MosquittoWebSocketService } from './mosquitto-web-socket.service';
+import { ControlPanelComponent } from './control-panel/control-panel.component';
 
 
 
@@ -23,7 +24,8 @@ import { MosquittoWebSocketService } from './mosquitto-web-socket.service';
     GeneralMapComponent,
     GraphListComponent,
     IncidentsChartComponent,
-    CarsFlowChartComponent
+    CarsFlowChartComponent,
+    ControlPanelComponent
   ],
   imports: [
     BrowserModule,
