@@ -26,8 +26,10 @@ export class MapListComponent implements OnInit {
     const houseColor : string = "#F4FF81"
     const grassColor : string = "#558B2F";
     const streetColor : string =  "#9E9E9E";
+    const magneticColor : string = "#2979FF";
     const danger : string = "#FF6D00";
-    let streets=[]
+    let streets=[];
+    let houses=[];
     //Houses
     let housePos=0;
     var i=0;
@@ -35,13 +37,13 @@ export class MapListComponent implements OnInit {
     //let house2 = svg.drawRect(120, 50, 0, 125, houseColor, draw)
     //Left
     for(i=0; i<10;i++){
-      svg.drawRect(120, 50,0,(50+housePos), houseColor, draw)
+      houses[i]=svg.drawRect(120, 50,0,(50+housePos), houseColor, draw)
       housePos+=75;
     }
     //Right
     housePos=0;
     for(i=0; i<10;i++){
-      svg.drawRect(120, 50,300,(50+housePos), houseColor, draw)
+      houses[10+i]=svg.drawRect(120, 50,300,(50+housePos), houseColor, draw)
       housePos+=75;
     }
     //Grass
@@ -86,7 +88,7 @@ export class MapListComponent implements OnInit {
     for(var i  = 0; i < borders.length; i++){
       svg.drawLine(borders[i][0], borders[i][1], borders[i][2], borders[i][3], 6, borderColor, draw)
     }
-
+    houses[10].animate().attr({ fill: danger })
     this.mqtt.connect();
     this.mqtt.client.onMessageArrived = (message: Paho.MQTT.Message) => {
       let response = JSON.parse(message.payloadString);

@@ -1,3 +1,28 @@
 #drawing{
     padding-left:38%
 }
+
+.specs{
+    position: absolute;
+    left:50px;
+    padding-left:30px;
+    width: 30px;
+    height: 30px;
+    font-size: 30px;
+}
+#Yellow{
+    top:250px;
+    background-color: #F4FF81;
+}
+#Orange{
+    top:300px;
+    background-color: #FF6D00;
+}
+#Blue{
+    top:350px;
+    background-color: #2979FF;
+}
+#Red{
+    top:200px;
+    background-color: red;
+}
