@@ -1,4 +1,41 @@
 <body>
+    <div id="gPanel">
+        <div class="panel panel-default pull-right">
+            <div class="panel-body">Control Panel
+                <div id="panelHouses">
+                    <div class="panel panel-default">
+                        <div class="panel-body">House Panel
+                            <div class="form-group" style="right: 50px;">
+                                <label for="sel1">Select a House:</label>
+                                <select [(ngModel)]="selectedHouse" class="form-control" id="sel1">
+                                    <option *ngFor="let option of houseOptions" [value]=option>
+                                        {{ option }}
+                                    </option>
+                                </select>
+                            </div>
+                            <div style="padding-bottom: 10px">{{ magneticState }}</div><button type="button" class="btn btn-primary pull-right" (click)="magneticInputChange()">Change Status</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="panelStreets">
+                    <div class="panel panel-default">
+                        <div class="panel-body">Street Panel
+                            <div class="form-group" style="right: 50px;">
+                                <label for="sel1">Select a House:</label>
+                                <select [(ngModel)]="selectedStreet" class="form-control" id="sel1">
+                                    <option *ngFor="let option of streetOptions" [value]=option>
+                                        {{ option }}
+                                    </option>
+                                </select>
+                            </div>
+                            <div style="padding-bottom: 10px">{{ pirState }}</div><button type="button" class="btn btn-primary pull-right" (click)="pirInputChange()">Change Status</button>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary pull-right" (click)="connect()">Send</button>
+            </div>
+        </div>
+    </div>
     <div class="specs" id="Yellow">Safe</div>
     <div class="specs" id="Red">Fire</div>
     <div class="specs" id="Orange">Movements</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpErrorResponse } from '../../../node_modules/@angular/common/http';
-import { MosquittoWebSocketService } from '../mosquitto-web-socket.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { MosquittoWebSocketService } from '../services/mosquitto-web-socket.service';
 import { Paho } from 'ng2-mqtt';
 
 @Component({
@@ -13,8 +13,8 @@ export class ControlPanelComponent implements OnInit {
   constructor(private mqtt: MosquittoWebSocketService) { }
 
   ngOnInit() {
-    this.mqtt.connect("");
-    this.mqtt.send_message("Hey");
+    //this.mqtt.connect("");
+    //this.mqtt.send_message("Hey");
     
   }
 

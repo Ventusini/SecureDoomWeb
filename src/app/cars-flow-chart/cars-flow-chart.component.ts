@@ -8,7 +8,7 @@ import { Chart } from 'chart.js';
 })
 export class CarsFlowChartComponent implements OnInit {
   
-  chart = [];
+  chart : any[] = [];
 
   constructor(private _carsFlor: CarFlowService) { }
 
