@@ -37,62 +37,52 @@ export class MapListComponent implements OnInit {
   public magneticColor : string = "#2979FF";
   public danger : string = "#FF6D00";
   ngOnInit() {
-    let draw = SVG('drawing').size(420, 800);  
+    let draw = SVG('drawing').size(1400, 700);  
     let svg = new SvgBase();
-  
-    //Houses
+    
+    svg.drawRect(1200,700,50,40,this.grassColor, draw);
+
+    //Entrance
+
+    let entrance = svg.drawRect(50,150,0,290,this.borderColor, draw)
+
+    //Houses 2.0 
     let housePos=0;
     var i=0;
+
     //Left
-    for(i=0; i<10;i++){
-      this.houses[i]=svg.drawRect(120, 50,0,(50+housePos), this.houseColor, draw)
-      housePos+=75;
+    for(var i=0; i<10;i++){
+      this.houses[i]=svg.drawRect(100, 150, (50+housePos), 40, this.houseColor, draw)
+      housePos+=122.5;
       this.houseOptions[i]=i
     }
+
     //Right
     housePos=0;
-    for(i=0; i<10;i++){
-      this.houses[10+i]=svg.drawRect(120, 50,300,(50+housePos), this.houseColor, draw)
-      housePos+=75;this.houseOptions[10+i]=10+i
+    for(var i=0; i<10;i++){
+      this.houses[10+i]=svg.drawRect(100, 150, (50+housePos), 550, this.houseColor, draw)
+      housePos+=122.5;this.houseOptions[10+i]=10+i
     }
-    //Grass
-    let grassPos=0;
-    //Left
-    for(i=0; i<9;i++){
-      svg.drawRect(120,25,0,(100+grassPos), this.grassColor, draw)
-      grassPos+=75;
-    }
-    //Right
-    grassPos=0;
-    for(i=0; i<9;i++){
-      svg.drawRect(120,25,300,(100+grassPos), this.grassColor, draw)
-      grassPos+=75;
-    }
-
-    svg.drawRect(40, 725,120,50, this.grassColor, draw) //frontGrassLeft
-    svg.drawRect(40, 725,260,50, this.grassColor, draw) //frontGrassRight
 
     //Street
     let posStreet=0;
     for(i=0; i<4;i++){
-      this.streets[i]=svg.drawRect(100, 181.25,160,(50+posStreet), this.streetColor, draw)
-      posStreet+=181.25;
+      this.streets[i]=svg.drawRect(300, 150,(50+posStreet),290, this.streetColor, draw)
+      posStreet+=300;
       this.streetOptions[i]=i
     }
-
-    //let street = svg.drawRect(100, 725,160,50, streetColor, draw)
     
     //Lines
 
-    //let border = svg.drawLine(300, 770, 300, 55, 6, borderColor, draw)
+    //let border = svg.drawLine(300, 770, 300, 55, 6, this.borderColor, draw)
       
     const borders = [ 
       //Area Borders
-      [0,50,418,50], [0,54,0,774], [418,54,418,774],[0,776,418,776],
+      [50,40,1250,40], [50,40,50,770], [50,697,1250,697],[1250,40,1250,770],
       //Street
-      [160, 770, 160, 55],[260, 770, 260, 55],
+      [50, 290, 1250, 290],[50, 440, 1250, 440],
       //Front Grass Lines
-      [120, 770, 120, 55],[300, 770, 300, 55],      
+      [50, 190, 1250, 190],[50, 550, 1250, 550],
     ];
 
     // Draw border lines
