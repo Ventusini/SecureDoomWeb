@@ -26,10 +26,10 @@ export class MosquittoWebSocketService {
   }
   public onConnected(): void {  
     console.log('Connected to broker. #subscriber');
-    this.client.subscribe('topic/timedate', () => { })
+    this.client.subscribe('topic2/timedate', () => { })
     if(this.message!=null){
       let message = new Paho.MQTT.Message(this.message);
-      message.destinationName = "topic/timedate";
+      message.destinationName = "topic2/timedate";
       this.client.send(message)
       console.log("Send")
     }

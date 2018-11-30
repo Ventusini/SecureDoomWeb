@@ -36,6 +36,20 @@
             </div>
         </div>
     </div>
+    <div id="Title">{{ actualCol }}</div><!--button type="button" class="btn btn-primary pull-right" (click)="magneticInputChange()">Change Colony</button-->
+    <div class="panel panel-default" id="idk">
+        <div class="panel-body">
+            <div class="form-group" style="right: 50px;">
+                <label for="sel1">Select a Colony:</label>
+                <select [(ngModel)]="actualCol" class="form-control" id="sel1">
+                    <option *ngFor="let option of colOptions" [value]=option>
+                        {{ option }}
+                    </option>
+                </select>
+            </div>
+
+        </div>
+    </div>
     <div class="specs" id="Yellow">Safe</div>
     <div class="specs" id="Red">Fire</div>
     <div class="specs" id="Orange">Movements</div>

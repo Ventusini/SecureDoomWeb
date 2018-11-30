@@ -5,6 +5,8 @@ import { Paho } from 'ng2-mqtt';
 import * as SVG from 'svg.js';
 import { SvgBase } from '../classes/svg-base';
 import { HttpErrorResponse } from '@angular/common/http';
+import { StreetserviceService } from '../streetservice.service';
+
 export interface Foo {
   bar: string;
 }
@@ -14,13 +16,19 @@ export interface Foo {
   styleUrls: ['./map-list.component.css'],
 })
 export class MapListComponent implements OnInit {
-  constructor(private mqtt: MosquittoWebSocketService) {
-  
+  constructor(private mqtt: MosquittoWebSocketService, private _streets: StreetserviceService) {
+    
   }
   public streets=[]
   public houses=[]
   public houseOptions=[]
   public streetOptions=[]
+  
+  public colID=0
+  public colOptions=[]
+  public actualCol="San Mateo";
+
+  public doorValue = 0;
 
   public selectedHouse=0;
   public selectedStreet=0;  
@@ -37,6 +45,16 @@ export class MapListComponent implements OnInit {
   public magneticColor : string = "#2979FF";
   public danger : string = "#FF6D00";
   ngOnInit() {
+    this._streets.getStreets()
+    .subscribe(res => {
+      for(let i=0; i<res.length; i++){
+        console.log("Res", res)
+        this.colOptions.push(res[i].name)
+      }
+    });
+
+    console.log("Colony",this.colOptions);
+
     let draw = SVG('drawing').size(1400, 700);  
     let svg = new SvgBase();
     
@@ -107,35 +125,46 @@ export class MapListComponent implements OnInit {
     if(this.mqtt.client.isConnected()){
       this.mqtt.unsubscribe();
     }
-    this.mqtt.message=JSON.stringify({ house: { id: this.selectedHouse, magnetico: this.magneticValue }, street: { id: this.selectedStreet, pir: this.pirValue } });   
+    //this.mqtt.door = JSON.stringify({colId: this.doorValue})
+    this.mqtt.message=JSON.stringify({ house: { id: this.selectedHouse, magnetico: this.magneticValue, pir: this.pirValue } }); //street: { id: this.selectedStreet, pir: this.pirValue } });   
     try{
       this.mqtt.connect();
       this.Subscribe();
+      console.log("nice")
     }
     catch(e){
       console.log("Error: "+e)
     }
-
-    
-    console.log("nice")
   }
   Subscribe(){
     this.mqtt.client.onMessageArrived = (message: Paho.MQTT.Message) => {
       console.log("Hey")
+      console.log(message.payloadString);
       let response = JSON.parse(message.payloadString);
       console.log(response)
-      if(response.street.pir){
-        this.streets[response.street.id].animate().attr({ fill: this.danger })
+      if(this.actualCol=="San Mateo"){
+        if(response.house.pir){
+          this.streets[response.house.id].animate().attr({ fill: this.danger })
+        }
+        else{
+          this.streets[response.house.id].animate().attr({ fill: this.streetColor })
+        }
+        if(response.house.magnetico){
+          this.houses[response.house.id].animate().attr({ fill : this.magneticColor })
+        }
+        else{
+          this.houses[response.house.id].animate().attr({ fill : this.houseColor })
+        }
       }
       else{
-        this.streets[response.street.id].animate().attr({ fill: this.streetColor })
+        this.otherColony()
       }
-      if(response.house.magnetico){
-        this.houses[response.house.id].animate().attr({ fill : this.magneticColor })
-      }
-      else{
-        this.houses[response.house.id].animate().attr({ fill : this.houseColor })
-      }
+    }
+  }
+  otherColony(){
+    for(var i=0; i<10;i++){
+      this.houses[i].animate().attr({ fill : this.houseColor })
+      this.streets[i].animate().attr({ fill: this.streetColor })
     }
   }
   magneticInputChange(){

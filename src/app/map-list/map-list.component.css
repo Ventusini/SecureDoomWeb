@@ -11,19 +11,32 @@
     height: 30px;
     font-size: 30px;
 }
+#Red{
+    top:400px;
+    background-color: red;
+}
 #Yellow{
-    top:250px;
+    top:450px;
     background-color: #F4FF81;
 }
 #Orange{
-    top:300px;
+    top:500px;
     background-color: #FF6D00;
 }
 #Blue{
-    top:350px;
+    top:550px;
     background-color: #2979FF;
 }
-#Red{
-    top:200px;
-    background-color: red;
+#idk{
+    width: 250px;
+    height: 50px;
+    float: left;
+    padding-left: 50px;
+}
+#Title{
+    font-size: 50px;
+    float: right;
+    position: relative;
+    padding-right: 900px;
+    padding-bottom: 20px;
 }
