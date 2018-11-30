@@ -143,13 +143,13 @@ export class MapListComponent implements OnInit {
       let response = JSON.parse(message.payloadString);
       console.log(response)
       if(this.actualCol=="San Mateo"){
-        if(response.house.pir){
+        if(response.house.pir==1){
           this.streets[response.house.id].animate().attr({ fill: this.danger })
         }
         else{
           this.streets[response.house.id].animate().attr({ fill: this.streetColor })
         }
-        if(response.house.magnetico){
+        if(response.house.magnetic==0){
           this.houses[response.house.id].animate().attr({ fill : this.magneticColor })
         }
         else{

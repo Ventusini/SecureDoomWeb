@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class StreetserviceService {
-  API_URL  =  'http://127.0.0.1:8000';
+  API_URL  =  'http://192.168.43.182:8000';
   constructor(private _http: HttpClient) {
       
    }
